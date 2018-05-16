@@ -22,11 +22,16 @@ class Block
     fill(time/3, 100, 100);
     colorMode(RGB, 255);
     stroke(255);
-    if(time > 0)
+    if (time > 0)
     {
       rect(x-20, y-20, 40, 40);
-    }else{
-      //int r = 90 - time;
+    } else {
+      int ang = 90 - time;
+      pushMatrix();
+      translate(random(width), random(height));
+      rotate(random(PI/2));
+      rect(0, 0, 40, 40);
+      popMatrix();
     }
   }
 
@@ -44,9 +49,9 @@ void SetNewBlock(int p1)
   for (int i = 0; i < p1; i++)
   {
     // 発生座標
-    int x = int(random(50, 540-50));
-    int y = int(random(50, 320));
+    int x = 50+rnd(440);//int(random(50, 540-50));
+    int y = 50+rnd(270);//int(random(50, 320));
 
-   objBlock.add(new Block(x, y));
+    objBlock.add(new Block(x, y));
   }
 }
