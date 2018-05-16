@@ -1,4 +1,4 @@
-int test = 9;
+int test = 32;
 int TestNum = 10000;
 
 int RndTable = 0;
@@ -16,10 +16,19 @@ int rnd(int seed) {  // 偶数がダメ
 
 void setup() {
   for (int i = 0; i < TestNum; i++) {
-    RndTable = rnd(RndTable);
-    int c = RndTable%test;
+    int c = 0;
+    if (test%2==0) {
+      while (c == 0) {
+        RndTable = rnd(RndTable);
+        c = RndTable%(test+1);
+      }
+      c = c - 1;
+    } else {
+      RndTable = rnd(RndTable);
+      c = RndTable%test;
+    }
     Count[c] = Count[c] + 1;
-    println(RndTable%test, RndTable);
+    println(c, RndTable);
   }
   println("-----------------");
   for (int i = 0; i < test; i++) {
