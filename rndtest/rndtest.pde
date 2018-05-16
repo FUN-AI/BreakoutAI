@@ -1,13 +1,15 @@
-int RndTable = 4182;
-int Count[] = new int[10];
+int test = 9;
 int TestNum = 10000;
 
-int rnd(int seed) {  // 4,5,7,8が少ない...
+int RndTable = 0;
+int Count[] = new int[test];
 
+int rnd(int seed) {  // 偶数がダメ
+
+  seed = abs(seed);
   seed = seed + 13;
-  seed = seed * seed;
-  seed = seed + 7;
-  seed = ~ seed;
+  seed = (seed) * int(sqrt(seed));
+  seed = ~ seed + 7;
 
   return abs(seed);
 }
@@ -15,11 +17,12 @@ int rnd(int seed) {  // 4,5,7,8が少ない...
 void setup() {
   for (int i = 0; i < TestNum; i++) {
     RndTable = rnd(RndTable);
-    Count[RndTable%10] = Count[RndTable%10] + 1;
-    println(RndTable%10, RndTable);
+    int c = RndTable%test;
+    Count[c] = Count[c] + 1;
+    println(RndTable%test, RndTable);
   }
   println("-----------------");
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < test; i++) {
     println("["+i+"]\t"+(Count[i]*100/TestNum)+"%\t"+Count[i]);
   }
 }
