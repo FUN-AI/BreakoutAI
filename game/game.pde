@@ -4,7 +4,6 @@ final int MaxBlockNum = 12;  // 最大ブロック数
 final int MaxTime = 30*30;   // 残り時間（最大）
 
 // ランダムシード値
-final String RndTable = "0000";
 int RndCount = 0;
 
 // 初期化
