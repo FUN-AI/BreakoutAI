@@ -18,6 +18,16 @@ class Block
   // 描画
   void display() 
   {
+    colorMode(HSB, 100);
+    fill(time/3, 100, 100);
+    colorMode(RGB, 255);
+    stroke(255);
+    if(time > 0)
+    {
+      rect(x-20, y-20, 40, 40);
+    }else{
+      //int r = 90 - time;
+    }
   }
 
   // 更新
@@ -34,6 +44,9 @@ void SetNewBlock(int p1)
   for (int i = 0; i < p1; i++)
   {
     // 発生座標
-    
+    int x = int(random(50, 540-50));
+    int y = int(random(50, 320));
+
+   objBlock.add(new Block(x, y));
   }
 }
