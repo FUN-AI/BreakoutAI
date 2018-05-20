@@ -1,5 +1,5 @@
 // ランダムシード値
-int RndTable = 0;
+int RndTable = int(random(9999));
 
 // ランダム関数内部用
 int _rnd(int seed) {
