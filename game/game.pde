@@ -11,6 +11,7 @@ ArrayList<Bar> objBar;
 // 変数
 int GameFlg = 0;   //ゲームの状態
 int GameTime = 0;  // 残り時間
+int Score = 0;
 
 // 初期化
 void setup() 
@@ -46,7 +47,7 @@ void draw()
   // ボールの処理
   for (int i = 0; i < objBall.size(); i++)
   {
-    objBall.get(i).update();
+    objBall.get(i).update(objBlock);
     objBall.get(i).display();
   }
 

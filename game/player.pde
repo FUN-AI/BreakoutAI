@@ -20,7 +20,7 @@ class Ball {
   }
 
   // 処理
-  void update()
+  void update(ArrayList<Block> _objBlock)
   {
     // 移動
     py = y;
@@ -38,12 +38,12 @@ class Ball {
     if (x > height-10) x = height-10;
 
     // ブロックとの当たり判定
-    for (int i = 0; i < objBlock.size(); i++)
+    for (int i = 0; i < _objBlock.size(); i++)
     {
-      boolean b = objBlock.get(i).checkHit(x, y);
+      boolean b = _objBlock.get(i).checkHit(x, y);
       if (b) {
-        int gx = objBlock.get(i).x;
-        int gy = objBlock.get(i).y;
+        int gx = _objBlock.get(i).x;
+        int gy = _objBlock.get(i).y;
         if (abs(gx-x) == abs(gy-y)) {  // 角に当たった
           angle = 360 - angle;
         } else if (abs(gx-x) < abs(gy-y)) { // 上か下に当たった
@@ -52,7 +52,7 @@ class Ball {
           angle = 360 - angle;
         }
         // 当たった対象を消す
-        objBlock.remove(i);
+        _objBlock.remove(i);
       }
     }
   }
@@ -76,6 +76,7 @@ class Bar
   void update()
   {
     // 移動
+    int n = ControlBar(x, y, len, objBlock, objBall, objBar);
 
     // ボールとの当たり判定
     for (int i = 0; i < objBall.size(); i++)
