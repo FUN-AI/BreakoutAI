@@ -6,6 +6,7 @@ final int MaxTime = 30*30;   // 残り時間（最大）
 // 初期化
 ArrayList<Block> objBlock;
 ArrayList<Ball> objBall;
+ArrayList<Bar> objBar;
 
 // 変数
 int GameFlg = 0;   //ゲームの状態
@@ -25,6 +26,15 @@ void setup()
   // ボールの発生
   objBall = new ArrayList<Ball>();
   objBall.add(new Ball(width/2, height/2, 60, 5));
+
+  // バーの発生
+  objBar = new ArrayList<Bar>();
+  objBar.add(new Bar(270, 620, 120));
+  objBar.add(new Bar(270, 720, 120));
+  objBar.add(new Bar(270, 820, 120));
+
+  // ゲームの初期化
+  GameTime = MaxTime;
 }
 
 // メイン
@@ -41,7 +51,11 @@ void draw()
   }
 
   // バーの処理
-  Player();
+  for (int i = 0; i < objBar.size(); i++)
+  {
+    objBar.get(i).update();
+    objBar.get(i).display();
+  }
 
   // ブロックの描画、処理
   for (int i = 0; i < objBlock.size(); i++)
@@ -49,4 +63,6 @@ void draw()
     objBlock.get(i).update();
     objBlock.get(i).display();
   }
+
+  // Debug
 }
